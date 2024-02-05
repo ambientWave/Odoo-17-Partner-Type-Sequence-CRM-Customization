@@ -48,17 +48,34 @@ class ResPartnerCustomSerial(models.Model):
 
     def unlink(self):
         if self['partner_type'] == 'client':
-            partner_stored_data = self.env['res.partner'].sudo().search([('partner_type', '=', 'client'), ('id', '>', self.id)])
-            if not partner_stored_data:
-                sequence_stored_data = self.env['ir.sequence'].sudo().search([('code', '=', 'res.partner.client.custom.serial')])
-                if sequence_stored_data.number_next_actual > 1:
-                    sequence_stored_data.number_next_actual -= 1
+            partner_stored_data = self.env['res.partner'].sudo().search([('partner_type', '=', 'vendor'), ('id', '>', self.id)])
+            if partner_stored_data:
+                for rec_dict in partner_stored_data:
+                    # extract int from partner_serial, subtract one, use zfill to pad, concatenate like this "CLNT"+result_from_zfill
+                    extracted_int_after_T_list = [int(i) for i in rec_dict["partner_serial"].split("T") if i.isdigit()]
+                    subtracted_int = extracted_int_after_T_list[0] - 1
+                    subtracted_int_to_padded_string = str(subtracted_int).zfill(4)
+                    finalized_field_string = "CLNT"+subtracted_int_to_padded_string
+                    individual_partner_stored_record = self.env['res.partner'].sudo().search([('id', '=', rec_dict.id)])
+                    individual_partner_stored_record.update({"partner_serial": finalized_field_string})            
+            sequence_stored_data = self.env['ir.sequence'].sudo().search([('code', '=', 'res.partner.client.custom.serial')])
+            if sequence_stored_data.number_next_actual > 1:
+                sequence_stored_data.number_next_actual -= 1
         elif self['partner_type'] == 'vendor':
             partner_stored_data = self.env['res.partner'].sudo().search([('partner_type', '=', 'vendor'), ('id', '>', self.id)])
-            if not partner_stored_data:
-                sequence_stored_data = self.env['ir.sequence'].sudo().search([('code', '=', 'res.partner.vendor.custom.serial')])
-                if sequence_stored_data.number_next_actual > 1:
-                    sequence_stored_data.number_next_actual -= 1
+            if partner_stored_data:
+                for rec_dict in partner_stored_data:
+                    # extract int from partner_serial, subtract one, use zfill to pad, concatenate like this "VNDR"+result_from_zfill
+                    extracted_int_after_R_list = [int(i) for i in rec_dict["partner_serial"].split("R") if i.isdigit()]
+                    print(extracted_int_after_R_list[0])
+                    subtracted_int = extracted_int_after_R_list[0] - 1
+                    subtracted_int_to_padded_string = str(subtracted_int).zfill(4)
+                    finalized_field_string = "VNDR"+subtracted_int_to_padded_string
+                    individual_partner_stored_record = self.env['res.partner'].sudo().search([('id', '=', rec_dict.id)])
+                    individual_partner_stored_record.update({"partner_serial": finalized_field_string})
+            sequence_stored_data = self.env['ir.sequence'].sudo().search([('code', '=', 'res.partner.vendor.custom.serial')])
+            if sequence_stored_data.number_next_actual > 1:
+                sequence_stored_data.number_next_actual -= 1
         else:
             pass
         

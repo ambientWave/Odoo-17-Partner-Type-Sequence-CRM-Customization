@@ -32,10 +32,6 @@ Also it adds a menu in crm that points to purchase orders.
         'data/res_partner_sequence.xml',
         'views/views.xml',
     ],
-    'assets': {'web.assets_backend': [
-        'qs_crm_partner_customization/static/src/js/DisallowFilterForField.js'
-        ],
-    },
     'installable': True,
     'application': True,
     'auto_install': False,

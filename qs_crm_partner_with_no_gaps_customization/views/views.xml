@@ -50,7 +50,7 @@
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='expected_revenue']" position="attributes">
-                <attribute name="groups">qs_crm_partner_customization.group_crm_show_revenues_field</attribute>
+                <attribute name="groups">qs_crm_partner_with_no_gaps_customization.group_crm_show_revenues_field</attribute>
                 
             </xpath>
         </field>
@@ -63,11 +63,11 @@
         <field name="arch" type="xml">
             <xpath expr="//progressbar" position="attributes">
                 <!-- remove progress bar -->
-                <attribute name="groups">qs_crm_partner_customization.group_crm_show_revenues_field</attribute>
+                <attribute name="groups">qs_crm_partner_with_no_gaps_customization.group_crm_show_revenues_field</attribute>
             </xpath>            
             <xpath expr="//field[@name='expected_revenue'][@widget='monetary']" position="attributes"> <!-- //field[@name='expected_revenue'][not(@widget='monetary')] -->
 
-                <attribute name="groups">qs_crm_partner_customization.group_crm_show_revenues_field</attribute>
+                <attribute name="groups">qs_crm_partner_with_no_gaps_customization.group_crm_show_revenues_field</attribute>
                 
             </xpath>
         </field>
@@ -80,7 +80,7 @@
         <field name="arch" type="xml">
           
             <xpath expr="//field[@name='expected_revenue']" position="attributes">
-                <attribute name="groups">qs_crm_partner_customization.group_crm_show_revenues_field</attribute>
+                <attribute name="groups">qs_crm_partner_with_no_gaps_customization.group_crm_show_revenues_field</attribute>
                 
             </xpath>
         </field>
@@ -93,7 +93,7 @@
         <field name="arch" type="xml">
           
             <xpath expr="//field[@name='expected_revenue']" position="attributes">
-                <attribute name="groups">qs_crm_partner_customization.group_crm_show_revenues_field</attribute>
+                <attribute name="groups">qs_crm_partner_with_no_gaps_customization.group_crm_show_revenues_field</attribute>
                 
             </xpath>
         </field>
@@ -106,7 +106,7 @@
         <field name="arch" type="xml">
           
             <xpath expr="//field[@name='expected_revenue']" position="attributes">
-                <attribute name="groups">qs_crm_partner_customization.group_crm_show_revenues_field</attribute>
+                <attribute name="groups">qs_crm_partner_with_no_gaps_customization.group_crm_show_revenues_field</attribute>
                 
             </xpath>
         </field>
@@ -117,14 +117,14 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_graph"/>
         <field name="arch" type="xml">
-			<!-- to hide a stuborn field, use a mix of conditional invisible (not groups) with a custom user field that fetch the current user or try OWL -->
+
             <xpath expr="//field[@name='user_id']" position="attributes">
-                <attribute name="groups">qs_crm_partner_customization.group_crm_show_revenues_field</attribute>
+                <attribute name="groups">qs_crm_partner_with_no_gaps_customization.group_crm_show_revenues_field</attribute>
                 
             </xpath>
 
             <xpath expr="//field[@name='stage_id']" position="attributes">
-                <attribute name="groups">qs_crm_partner_customization.group_crm_show_revenues_field</attribute>
+                <attribute name="groups">qs_crm_partner_with_no_gaps_customization.group_crm_show_revenues_field</attribute>
                 
             </xpath>
           
@@ -138,7 +138,7 @@
         <field name="arch" type="xml">
           
             <xpath expr="//field[@name='expected_revenue']" position="attributes">
-                <attribute name="groups">qs_crm_partner_customization.group_crm_show_revenues_field</attribute>
+                <attribute name="groups">qs_crm_partner_with_no_gaps_customization.group_crm_show_revenues_field</attribute>
                 
             </xpath>
         </field>
@@ -204,7 +204,7 @@
 
     <menuitem
         id="crm_menu_purchase_orders"
-        name="Purchase Order"
+        name="Purchase Orders"
         parent="crm.crm_menu_root"
         action="purchase.purchase_rfq"
         sequence="4"/>

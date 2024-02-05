@@ -15,7 +15,7 @@
     <record id="group_crm_show_revenues_field" model="res.groups">
         <field name="name">Allowed User to See Opportunity Revenues</field>
         <field name="category_id" ref="module_category_crm_role"/>
-        <field name="implied_ids" eval="[(4, ref('group_crm_hide_revenues_field'))]"/> <!-- remove to show a checkbox style instead of selection list but this will only be shown in debug mode and when user selects this group the assigned user WILL BE IN THE IMPLIED GROUP -->
+        <field name="implied_ids" eval="[(4, ref('group_crm_hide_revenues_field'))]"/>
     </record>
 
 </odoo>
