@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
         <!-- The noupdate parameter is used to indicate if the values in 
         the xml file must be re-imported when a module in updated.
         For example, if we have a file with demo datas and we use noupdate="1", 
